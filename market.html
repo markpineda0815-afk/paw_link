@@ -1,47 +1,80 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fffaf5">
+  <meta name="description" content="Browse pet essentials and community listings at the PawLink pet shop.">
   <title>Pet shop | PawLink</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
   <link rel="stylesheet" href="market.css">
-  <script>try{document.documentElement.dataset.theme=localStorage.getItem('pawlink-theme')||'light'}catch(e){}</script>
-  <script src="market-shop.js" defer></script>
+  <link rel="stylesheet" href="mobile-nav.css">
+  <script defer src="pawlink.js"></script>
+  <script defer src="market-shop.js"></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-theme-switch]').forEach(button => button.addEventListener('click', () => {
+        const toggle = document.querySelector('#theme-toggle');
+        if (!toggle) return;
+        toggle.checked = !toggle.checked;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }));
+    });
+  </script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="dashboard.html" aria-label="PawLink home"><span class="brand-mark">🐾</span> PawLink</a>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="dashboard.html">Home</a><a href="adopt.html">Adopt</a><a class="active" href="market.html">Pet shop</a><a href="reports.html">Lost &amp; found</a><a href="community.html">Community</a>
-    </nav>
-    <div class="top-actions">
-      <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="theme-icon">🌙</span></button>
-      <button class="button button-cart" id="open-cart" type="button" aria-label="Open shopping cart">Cart <span class="cart-count" id="cart-count">0</span></button>
-    </div>
-  </header>
-  <main class="page-shell">
-    <section class="hero">
-      <div class="hero-copy"><span class="eyebrow">A happier kind of shopping</span><h1>Good things for <span>good pets.</span></h1><p>Discover thoughtful essentials from our pet-loving community. Tap a product to see all the details.</p><div class="hero-actions"><a class="button button-primary" href="#shop">Explore the shop <span aria-hidden="true">↓</span></a><button class="button button-secondary" id="hero-sell" type="button"><span aria-hidden="true">＋</span> List an item</button></div></div>
-      <div class="hero-art" aria-hidden="true"><div class="hero-blob"></div><img src="https://images.unsplash.com/photo-1589924691995-400dc9 eccentric?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="" onerror="this.src='https://images.unsplash.com/photo-1589924691995-400dc9eccd9?auto=format&fit=crop&w=800&q=85'"><span class="floating-tag tag-one">Made for pets ♡</span><span class="floating-tag tag-two">Community picks ✨</span></div>
-    </section>
-    <section class="shop-section" id="shop">
-      <div class="section-heading"><div><span class="eyebrow">The PawLink shop</span><h2>Find their next favorite</h2><p>Browse trusted community listings and everyday essentials.</p></div><div class="shop-tools"><label class="search-box"><span aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Search products" aria-label="Search products"></label><button class="button button-primary add-listing" id="add-listing" type="button"><span aria-hidden="true">＋</span> List an item</button></div></div>
-      <div class="category-row" aria-label="Product categories"><button class="category-chip selected" data-category="All" type="button">All items</button><button class="category-chip" data-category="Food" type="button">Food &amp; treats</button><button class="category-chip" data-category="Toys" type="button">Toys</button><button class="category-chip" data-category="Accessories" type="button">Accessories</button><button class="category-chip" data-category="Care" type="button">Care</button></div>
-      <div class="product-grid" id="market-listings" aria-live="polite"></div>
-      <p class="empty-state" id="empty-products" hidden>No products match that search. Try another category or search term.</p>
-    </section>
-    <section class="orders-section" id="my-orders"><div class="section-heading compact"><div><span class="eyebrow">After checkout</span><h2>Your deliveries</h2><p>Track the progress of your purchases here.</p></div></div><div class="orders-list" id="orders-list"><p class="muted">Your completed purchases and delivery updates will appear here.</p></div></section>
-  </main>
-  <footer class="site-footer"><span>🐾 PawLink Pet Shop</span><span>Happy pets, happy homes.</span></footer>
+  <div class="app-shell market-app">
+    <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+    <input class="theme-toggle" type="checkbox" id="theme-toggle">
+    <aside class="sidebar">
+      <a class="brand sidebar-brand" href="dashboard.html"><i class="fa-solid fa-paw" aria-hidden="true"></i><span>PawLink</span></a>
+      <label class="sidebar-control" for="sidebar-toggle"><i class="fa-solid fa-bars" aria-hidden="true"></i><span>Toggle menu</span></label>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Home</span></a>
+        <a class="nav-link" href="search.html"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Search pets</span></a>
+        <a class="nav-link" href="adopt.html"><i class="fa-solid fa-heart" aria-hidden="true"></i><span>Adopt a pet</span></a>
+        <a class="nav-link" href="reports.html"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i><span>Pet reports</span></a>
+        <a class="nav-link active" href="market.html"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i><span>Pet shop</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="theme-control theme-control-button" type="button" data-theme-switch><i class="fa-solid fa-moon" aria-hidden="true"></i><span>Dark mode</span><span class="switch-track" aria-hidden="true"></span></button>
+        <a class="nav-link" href="profile.html"><i class="fa-solid fa-user" aria-hidden="true"></i><span>My profile</span></a>
+        <a class="nav-link" href="settings.html"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a>
+      </div>
+    </aside>
+    <label class="mobile-menu-scrim" for="sidebar-toggle" aria-label="Close navigation"></label>
+    <main class="dashboard-main">
+      <header class="topbar">
+        <label class="mobile-menu-button" for="sidebar-toggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></label>
+        <a class="brand mobile-brand" href="dashboard.html"><i class="fa-solid fa-paw" aria-hidden="true"></i><span>PawLink</span></a>
+        <form class="topbar-search" action="search.html"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input name="q" type="search" placeholder="Search pets" aria-label="Search pets"><button type="submit">Search</button></form>
+        <div class="topbar-actions"><button class="market-cart-button" id="open-cart" type="button" aria-label="Open shopping cart"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i><span>Cart</span><b class="cart-count" id="cart-count">0</b></button></div>
+      </header>
+      <div class="dashboard-content market-content">
+        <section class="market-hero">
+          <div class="market-hero-copy"><p class="eyebrow">COMMUNITY PET SHOP</p><h1>Good things for <span>good pets.</span></h1><p>Discover thoughtful pet essentials and community listings. Choose an item to see what it offers.</p><div class="market-hero-actions"><a class="button button-primary" href="#shop">Explore the shop <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a><button class="button button-outline" id="hero-sell" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> List an item</button></div></div>
+          <div class="market-hero-image"><img src="https://images.unsplash.com/photo-1551717743-4995981b1f6?auto=format&fit=crop&w=900&q=85" alt="A happy dog ready for an outdoor adventure" onerror="this.src='https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=900&q=85'"><span class="market-image-label"><i class="fa-solid fa-heart" aria-hidden="true"></i> Made for happy pets</span></div>
+        </section>
+        <section class="market-shop-section" id="shop">
+          <div class="section-heading"><div><p class="eyebrow">PAWLINK PICKS</p><h2>Find their next favorite</h2><p>Browse everyday essentials and items listed by the community.</p></div><div class="market-tools"><label class="market-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="product-search" type="search" placeholder="Search products" aria-label="Search products"></label><button class="button button-primary" id="add-listing" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> List an item</button></div></div>
+          <div class="category-row" aria-label="Product categories"><button class="category-chip selected" data-category="All" type="button">All items</button><button class="category-chip" data-category="Food" type="button">Food &amp; treats</button><button class="category-chip" data-category="Toys" type="button">Toys</button><button class="category-chip" data-category="Accessories" type="button">Accessories</button><button class="category-chip" data-category="Care" type="button">Care</button></div>
+          <div class="product-grid" id="market-listings" aria-live="polite"></div>
+          <p class="empty-state" id="empty-products" hidden>No products match that search. Try another category or search term.</p>
+        </section>
+        <section class="market-orders" id="my-orders"><div class="section-heading"><div><p class="eyebrow">ORDER UPDATES</p><h2>Your deliveries</h2><p>Track delivery progress for purchases made in this demo.</p></div></div><div class="orders-list" id="orders-list"><p class="muted">Your completed purchases and delivery updates will appear here.</p></div></section>
+      </div>
+      <footer class="dashboard-footer"><span>🐾 PawLink Pet Shop</span><span>Happy pets, happy homes.</span></footer>
+    </main>
+  </div>
 
-  <dialog class="modal" id="product-modal" aria-labelledby="detail-title"><div class="modal-head"><h2 id="detail-title">Product details</h2><button class="close-button" data-close="product-modal" type="button" aria-label="Close">×</button></div><div id="product-detail"></div></dialog>
-  <dialog class="modal" id="listing-modal" aria-labelledby="listing-title"><div class="modal-head"><div><span class="eyebrow">Community marketplace</span><h2 id="listing-title">List an item</h2></div><button class="close-button" data-close="listing-modal" type="button" aria-label="Close">×</button></div><form id="sale-form" class="form-grid"><input type="hidden" name="listingId"><label class="field full">Product name<input name="name" required maxlength="70" placeholder="e.g. Cozy fleece dog bed"></label><label class="field">Price (USD)<input name="price" type="number" min="0.01" max="10000" step="0.01" required placeholder="24.99"></label><label class="field">Category<select name="category" required><option value="Food">Food &amp; treats</option><option value="Toys">Toys</option><option value="Accessories">Accessories</option><option value="Care">Care</option></select></label><label class="field full">What does it offer?<textarea name="description" rows="4" maxlength="500" required placeholder="Describe the item, size, condition, and what makes it useful."></textarea></label><label class="field full">Product photo <span class="optional">(optional)</span><input name="image" type="file" accept="image/*"><small>Choose an image under 900 KB. Images stay in this browser.</small></label><p class="form-status full" id="sale-status" role="status"></p><div class="modal-actions full"><button class="button button-secondary" data-close="listing-modal" type="button">Cancel</button><button class="button button-primary" type="submit">Save listing</button></div></form></dialog>
-  <dialog class="modal cart-modal" id="cart-modal" aria-labelledby="cart-title"><div class="modal-head"><div><span class="eyebrow">Ready for a treat?</span><h2 id="cart-title">Your cart</h2></div><button class="close-button" data-close="cart-modal" type="button" aria-label="Close">×</button></div><div id="cart-items"></div><div class="cart-summary" id="cart-summary" hidden><div><span>Subtotal</span><strong id="cart-subtotal">$0.00</strong></div><p>Delivery is included in this demo checkout.</p><button class="button button-primary wide" id="checkout-button" type="button">Continue to checkout</button></div><p class="empty-state" id="empty-cart">Your cart is waiting for something pawsome.</p></dialog>
-  <dialog class="modal checkout-modal" id="checkout-modal" aria-labelledby="checkout-title"><div class="modal-head"><div><span class="eyebrow">Fictional demo checkout</span><h2 id="checkout-title">Delivery &amp; payment</h2></div><button class="close-button" data-close="checkout-modal" type="button" aria-label="Close">×</button></div><div class="demo-callout">This is a non-functional demo. Use fictional information only; no payment is processed and card details are not saved.</div><form id="checkout-form" class="form-grid"><label class="field full">Recipient name<input name="recipient" autocomplete="name" required maxlength="80" placeholder="Alex Petlover"></label><label class="field full">Delivery address<input name="address" autocomplete="street-address" required maxlength="140" placeholder="123 Paw Street, Petville"></label><label class="field">City<input name="city" autocomplete="address-level2" required maxlength="60" placeholder="Petville"></label><label class="field">ZIP / postal code<input name="postal" autocomplete="postal-code" required maxlength="16" placeholder="12345"></label><div class="full payment-label">Fictional card details</div><label class="field full">Name on card<input name="cardName" autocomplete="cc-name" required maxlength="80" placeholder="Alex Petlover"></label><label class="field full">Card number<input name="cardNumber" inputmode="numeric" autocomplete="cc-number" required minlength="12" maxlength="19" pattern="[0-9 ]{12,19}" placeholder="4242 4242 4242 4242"></label><label class="field">Expiry<input name="expiry" autocomplete="cc-exp" required pattern="(0[1-9]|1[0-2])\/([0-9]{2})" placeholder="MM/YY"></label><label class="field">CVC<input name="cvc" inputmode="numeric" autocomplete="cc-csc" required pattern="[0-9]{3,4}" maxlength="4" placeholder="123"></label><p class="checkout-total full" id="checkout-total"></p><p class="form-status full" id="checkout-status" role="status"></p><div class="modal-actions full"><button class="button button-secondary" data-close="checkout-modal" type="button">Back</button><button class="button button-primary" type="submit">Place fictional order</button></div></form></dialog>
-  <dialog class="modal success-modal" id="success-modal" aria-labelledby="success-title"><div class="success-icon">✓</div><h2 id="success-title">Order placed!</h2><p id="success-message">Your fictional order is on its way.</p><div class="delivery-timeline" id="success-timeline"></div><button class="button button-primary wide" data-close="success-modal" type="button">View my deliveries</button></dialog>
+  <dialog class="market-modal" id="product-modal" aria-labelledby="product-modal-title"><div class="modal-head"><h2 id="product-modal-title">Product details</h2><button class="close-button" data-close="product-modal" type="button" aria-label="Close">×</button></div><div id="product-detail"></div></dialog>
+  <dialog class="market-modal" id="listing-modal" aria-labelledby="listing-title"><div class="modal-head"><div><p class="eyebrow">COMMUNITY MARKETPLACE</p><h2 id="listing-title">List an item</h2></div><button class="close-button" data-close="listing-modal" type="button" aria-label="Close">×</button></div><form id="sale-form" class="form-grid"><input type="hidden" name="listingId"><label class="market-field full">Product name<input name="name" required maxlength="70" placeholder="e.g. Cozy fleece dog bed"></label><label class="market-field">Price (USD)<input name="price" type="number" min="0.01" max="10000" step="0.01" required placeholder="24.99"></label><label class="market-field">Category<select name="category" required><option value="Food">Food &amp; treats</option><option value="Toys">Toys</option><option value="Accessories">Accessories</option><option value="Care">Care</option></select></label><label class="market-field full">What does it offer?<textarea name="description" rows="4" maxlength="500" required placeholder="Describe the item, size, condition, and what makes it useful."></textarea></label><label class="market-field full">Product photo <span class="optional">(optional)</span><input name="image" type="file" accept="image/*"><small>Choose an image under 900 KB. Images stay in this browser.</small></label><p class="market-form-status full" id="sale-status" role="status"></p><div class="modal-actions full"><button class="button button-outline" data-close="listing-modal" type="button">Cancel</button><button class="button button-primary" type="submit">Save listing</button></div></form></dialog>
+  <dialog class="market-modal cart-modal" id="cart-modal" aria-labelledby="cart-title"><div class="modal-head"><div><p class="eyebrow">READY FOR A TREAT?</p><h2 id="cart-title">Your cart</h2></div><button class="close-button" data-close="cart-modal" type="button" aria-label="Close">×</button></div><div id="cart-items"></div><div class="cart-summary" id="cart-summary" hidden><div><span>Subtotal</span><strong id="cart-subtotal">$0.00</strong></div><p>Delivery is included in this demo checkout.</p><button class="button button-primary wide" id="checkout-button" type="button">Continue to checkout</button></div><p class="empty-state" id="empty-cart">Your cart is waiting for something pawsome.</p></dialog>
+  <dialog class="market-modal checkout-modal" id="checkout-modal" aria-labelledby="checkout-title"><div class="modal-head"><div><p class="eyebrow">FICTIONAL DEMO CHECKOUT</p><h2 id="checkout-title">Delivery &amp; payment</h2></div><button class="close-button" data-close="checkout-modal" type="button" aria-label="Close">×</button></div><div class="demo-callout">This is a non-functional demo. Use fictional information only; no payment is processed and card details are not saved.</div><form id="checkout-form" class="form-grid"><label class="market-field full">Recipient name<input name="recipient" autocomplete="name" required maxlength="80" placeholder="Alex Petlover"></label><label class="market-field full">Delivery address<input name="address" autocomplete="street-address" required maxlength="140" placeholder="123 Paw Street, Petville"></label><label class="market-field">City<input name="city" autocomplete="address-level2" required maxlength="60" placeholder="Petville"></label><label class="market-field">ZIP / postal code<input name="postal" autocomplete="postal-code" required maxlength="16" placeholder="12345"></label><div class="full payment-label">Fictional card details</div><label class="market-field full">Name on card<input name="cardName" autocomplete="cc-name" required maxlength="80" placeholder="Alex Petlover"></label><label class="market-field full">Card number<input name="cardNumber" inputmode="numeric" autocomplete="cc-number" required minlength="12" maxlength="19" pattern="[0-9 ]{12,19}" placeholder="4242 4242 4242 4242"></label><label class="market-field">Expiry<input name="expiry" autocomplete="cc-exp" required pattern="(0[1-9]|1[0-2])\/([0-9]{2})" placeholder="MM/YY"></label><label class="market-field">CVC<input name="cvc" inputmode="numeric" autocomplete="cc-csc" required pattern="[0-9]{3,4}" maxlength="4" placeholder="123"></label><p class="checkout-total full" id="checkout-total"></p><p class="market-form-status full" id="checkout-status" role="status"></p><div class="modal-actions full"><button class="button button-outline" data-close="checkout-modal" type="button">Back</button><button class="button button-primary" type="submit">Place fictional order</button></div></form></dialog>
+  <dialog class="market-modal success-modal" id="success-modal" aria-labelledby="success-title"><div class="success-icon">✓</div><h2 id="success-title">Order placed!</h2><p id="success-message">Your fictional order is on its way.</p><div class="delivery-timeline" id="success-timeline"></div><button class="button button-primary wide" data-close="success-modal" type="button">View my deliveries</button></dialog>
 </body>
 </html>
