@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Manage your PawLink account, appearance, and preferences.">
+  <meta name="description" content="Manage your PawLink settings and appearance.">
   <title>Settings | PawLink</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,12 +38,11 @@
         <form class="topbar-search" action="search.html"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input name="q" type="search" placeholder="Search pets" aria-label="Search pets"><button type="submit">Search</button></form>
         <div class="topbar-actions"><a class="avatar" href="profile.html" aria-label="My profile"><i class="fa-solid fa-user" aria-hidden="true"></i></a><a class="avatar header-shortcut" href="settings.html" aria-label="Settings" title="Settings"><i class="fa-solid fa-gear" aria-hidden="true"></i></a></div>
       </header>
-      <div class="dashboard-content">
-        <section class="page-intro"><p class="eyebrow">YOUR PAWLINK ACCOUNT</p><h1>Settings</h1><p>Manage your appearance and account preferences.</p></section>
+      <div class="dashboard-content settings-content">
+        <section class="page-intro"><p class="eyebrow">YOUR PAWLINK PREFERENCES</p><h1>Settings</h1><p>Manage your appearance and account preferences.</p></section>
         <section class="content-card settings-section"><h2>Appearance</h2><p>Your theme preference is saved in this browser and stays in sync as you move between the pet shop, forums, and other PawLink pages.</p><label class="setting-row settings-theme-row" for="theme-toggle"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i><span><strong>Dark mode</strong><small>Use the theme that is easiest on your eyes.</small></span><span class="settings-switch" aria-hidden="true"></span></label></section>
         <section class="content-card settings-section section-block"><h2>Account</h2><p>Your demo profile is stored in this browser. Logging out removes the saved demo profile; your pet shop listings, cart, and orders remain on this browser.</p><div class="settings-account-row"><div><strong>Sign out of PawLink</strong><small>Return to the PawLink welcome page.</small></div><button class="button button-outline settings-logout" id="logout-button" type="button"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out</button></div></section>
       </div>
-      <footer class="dashboard-footer"><span>🐾 PawLink</span><a href="market.html">Visit the pet shop</a></footer>
     </main>
   </div>
 </body>
