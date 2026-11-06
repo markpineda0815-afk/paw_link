@@ -5,31 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Browse pet essentials and community listings at the PawLink pet shop.">
   <title>Pet shop | PawLink</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="dashboard.css">
-  <link rel="stylesheet" href="market.css">
-  <link rel="stylesheet" href="mobile-nav.css">
+  <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="market.css"><link rel="stylesheet" href="mobile-nav.css">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('pawlink-theme')||'light'}catch(e){}</script>
   <script defer src="pawlink.js"></script>
   <script defer src="market-shop.js"></script>
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('[data-theme-switch]').forEach(button => button.addEventListener('click', () => {
-        const toggle = document.querySelector('#theme-toggle');
-        if (!toggle) return;
-        toggle.checked = !toggle.checked;
-        toggle.dispatchEvent(new Event('change', { bubbles: true }));
-      }));
-    });
-  </script>
+  <script defer src="theme-restore.js"></script>
 </head>
 <body>
   <div class="app-shell market-app">
-    <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
-    <input class="theme-toggle" type="checkbox" id="theme-toggle">
+    <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle"><input class="theme-toggle" type="checkbox" id="theme-toggle">
     <aside class="sidebar">
       <a class="brand sidebar-brand" href="dashboard.html"><i class="fa-solid fa-paw" aria-hidden="true"></i><span>PawLink</span></a>
       <label class="sidebar-control" for="sidebar-toggle"><i class="fa-solid fa-bars" aria-hidden="true"></i><span>Toggle menu</span></label>
@@ -41,7 +28,7 @@
         <a class="nav-link active" href="market.html"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i><span>Pet shop</span></a>
       </nav>
       <div class="sidebar-bottom">
-        <button class="theme-control theme-control-button" type="button" data-theme-switch><i class="fa-solid fa-moon" aria-hidden="true"></i><span>Dark mode</span><span class="switch-track" aria-hidden="true"></span></button>
+        <label class="theme-control" for="theme-toggle"><i class="fa-solid fa-moon" aria-hidden="true"></i><span>Dark mode</span><span class="switch-track" aria-hidden="true"></span></label>
         <a class="nav-link" href="profile.html"><i class="fa-solid fa-user" aria-hidden="true"></i><span>My profile</span></a>
         <a class="nav-link" href="settings.html"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a>
       </div>
@@ -55,22 +42,16 @@
         <div class="topbar-actions"><button class="market-cart-button" id="open-cart" type="button" aria-label="Open shopping cart"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i><span>Cart</span><b class="cart-count" id="cart-count">0</b></button></div>
       </header>
       <div class="dashboard-content market-content">
-        <section class="market-hero">
-          <div class="market-hero-copy"><p class="eyebrow">COMMUNITY PET SHOP</p><h1>Good things for <span>good pets.</span></h1><p>Discover thoughtful pet essentials and community listings. Choose an item to see what it offers.</p><div class="market-hero-actions"><a class="button button-primary" href="#shop">Explore the shop <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a><button class="button button-outline" id="hero-sell" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> List an item</button></div></div>
-          <div class="market-hero-image"><img src="https://images.unsplash.com/photo-1551717743-4995981b1f6?auto=format&fit=crop&w=900&q=85" alt="A happy dog ready for an outdoor adventure" onerror="this.src='https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=900&q=85'"><span class="market-image-label"><i class="fa-solid fa-heart" aria-hidden="true"></i> Made for happy pets</span></div>
-        </section>
-        <section class="market-shop-section" id="shop">
-          <div class="section-heading"><div><p class="eyebrow">PAWLINK PICKS</p><h2>Find their next favorite</h2><p>Browse everyday essentials and items listed by the community.</p></div><div class="market-tools"><label class="market-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="product-search" type="search" placeholder="Search products" aria-label="Search products"></label><button class="button button-primary" id="add-listing" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> List an item</button></div></div>
+        <section class="market-hero"><div class="market-hero-copy"><p class="eyebrow">COMMUNITY PET SHOP</p><h1>Good things for <span>good pets.</span></h1><p>Discover thoughtful pet essentials and community listings. Choose an item to see what it offers.</p><div class="market-hero-actions"><a class="button button-primary" href="#shop">Explore the shop <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a><button class="button button-outline" id="hero-sell" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> List an item</button></div></div><div class="market-hero-image"><img src="https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=900&q=85" alt="A happy dog ready for an outdoor adventure"></div></section>
+        <section class="market-shop-section" id="shop"><div class="section-heading"><div><p class="eyebrow">PAWLINK PICKS</p><h2>Find their next favorite</h2><p>Browse everyday essentials and items listed by the community.</p></div><div class="market-tools"><label class="market-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="product-search" type="search" placeholder="Search products" aria-label="Search products"></label><button class="button button-primary" id="add-listing" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> List an item</button></div></div>
           <div class="category-row" aria-label="Product categories"><button class="category-chip selected" data-category="All" type="button">All items</button><button class="category-chip" data-category="Food" type="button">Food &amp; treats</button><button class="category-chip" data-category="Toys" type="button">Toys</button><button class="category-chip" data-category="Accessories" type="button">Accessories</button><button class="category-chip" data-category="Care" type="button">Care</button></div>
-          <div class="product-grid" id="market-listings" aria-live="polite"></div>
-          <p class="empty-state" id="empty-products" hidden>No products match that search. Try another category or search term.</p>
+          <div class="product-grid" id="market-listings" aria-live="polite"></div><p class="empty-state" id="empty-products" hidden>No products match that search. Try another category or search term.</p>
         </section>
         <section class="market-orders" id="my-orders"><div class="section-heading"><div><p class="eyebrow">ORDER UPDATES</p><h2>Your deliveries</h2><p>Track delivery progress for purchases made in this demo.</p></div></div><div class="orders-list" id="orders-list"><p class="muted">Your completed purchases and delivery updates will appear here.</p></div></section>
       </div>
       <footer class="dashboard-footer"><span>🐾 PawLink Pet Shop</span><span>Happy pets, happy homes.</span></footer>
     </main>
   </div>
-
   <dialog class="market-modal" id="product-modal" aria-labelledby="product-modal-title"><div class="modal-head"><h2 id="product-modal-title">Product details</h2><button class="close-button" data-close="product-modal" type="button" aria-label="Close">×</button></div><div id="product-detail"></div></dialog>
   <dialog class="market-modal" id="listing-modal" aria-labelledby="listing-title"><div class="modal-head"><div><p class="eyebrow">COMMUNITY MARKETPLACE</p><h2 id="listing-title">List an item</h2></div><button class="close-button" data-close="listing-modal" type="button" aria-label="Close">×</button></div><form id="sale-form" class="form-grid"><input type="hidden" name="listingId"><label class="market-field full">Product name<input name="name" required maxlength="70" placeholder="e.g. Cozy fleece dog bed"></label><label class="market-field">Price (USD)<input name="price" type="number" min="0.01" max="10000" step="0.01" required placeholder="24.99"></label><label class="market-field">Category<select name="category" required><option value="Food">Food &amp; treats</option><option value="Toys">Toys</option><option value="Accessories">Accessories</option><option value="Care">Care</option></select></label><label class="market-field full">What does it offer?<textarea name="description" rows="4" maxlength="500" required placeholder="Describe the item, size, condition, and what makes it useful."></textarea></label><label class="market-field full">Product photo <span class="optional">(optional)</span><input name="image" type="file" accept="image/*"><small>Choose an image under 900 KB. Images stay in this browser.</small></label><p class="market-form-status full" id="sale-status" role="status"></p><div class="modal-actions full"><button class="button button-outline" data-close="listing-modal" type="button">Cancel</button><button class="button button-primary" type="submit">Save listing</button></div></form></dialog>
   <dialog class="market-modal cart-modal" id="cart-modal" aria-labelledby="cart-title"><div class="modal-head"><div><p class="eyebrow">READY FOR A TREAT?</p><h2 id="cart-title">Your cart</h2></div><button class="close-button" data-close="cart-modal" type="button" aria-label="Close">×</button></div><div id="cart-items"></div><div class="cart-summary" id="cart-summary" hidden><div><span>Subtotal</span><strong id="cart-subtotal">$0.00</strong></div><p>Delivery is included in this demo checkout.</p><button class="button button-primary wide" id="checkout-button" type="button">Continue to checkout</button></div><p class="empty-state" id="empty-cart">Your cart is waiting for something pawsome.</p></dialog>
